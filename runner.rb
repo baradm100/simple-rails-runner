@@ -24,6 +24,50 @@ def parse_custom_eval
     end
 end
 
+# @params [Object] value the thing to print
+def appand_to_log(value)
+    log_path = ARGV[ARGV.index('--log') + 1]
+
+    # creating the full path of the log folder
+    full_path = log_path.split('/').reverse.drop(1).reverse.join('/')
+    FileUtils.mkdir_p(full_path)
+
+    # appand the value to the value
+    open(log_path, 'a') do |f|
+        f.puts value
+    end
+end
+
+# @params [Object] value the thing to print
+def print(value)
+    if ARGV.include? '--log'
+        appand_to_log value
+    else
+        super value
+    end
+end
+
+# @params [Object] value the thing to print
+# @return [Object] returns the +value+
+def p(value)
+    if ARGV.include? '--log'
+        appand_to_log value
+    else
+        super value
+    end
+
+    value
+end
+
+# @params [Object] value the thing to print
+def puts(value)
+    if ARGV.include? '--log'
+        appand_to_log value
+    else
+        super value
+    end
+end
+
 # Initializing
 puts 'Starting the runner...'
 
@@ -49,6 +93,10 @@ end
 # parsing args
 custom_timeout = parse_custom_timeout()
 custom_eval = parse_custom_eval()
+
+# make daemon if needed to
+Process.daemon if ARGV.include? '-D'
+
 
 # Infinte loop
 loop do

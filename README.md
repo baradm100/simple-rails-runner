@@ -9,6 +9,7 @@ Basic Rails runner can (and should) run in the background I created at home for 
 
 ## Requirements
 * Rails (2.1 or above)
+* Ruby (1.9 or above)
 
 ## Install
 Just clone the git or download the file :)
@@ -30,3 +31,5 @@ $ bundle exec rails runner runner.rb --eval "puts 'hi'" --timeout 0.1
 | ----------------- | --------------------------------------------------------- |
 | --timeout <VALUE> | Set custom timeout for the loop, defualt is 2 second      |
 | --eval <VALUE>    | Running the value as code (using eval, please be careful) |
+| --log <VALUE>     | Log file path (overwrite `puts`, `print` and `p`)         |
+| -D                | Run the runner as a daemon (not compatible in windows)    |
