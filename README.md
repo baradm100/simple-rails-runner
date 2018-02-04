@@ -20,8 +20,7 @@ $ git clone git@github.com:baradm100/simple-rails-runner.git
 ## How To Run
 Just run using Rails runner
 ```bash
-# as a daemon (only in bash)
-$ bundle exec rails runner runner.rb &
+$ bundle exec rails runner runner.rb
 # With args:
 $ bundle exec rails runner runner.rb --eval "puts 'hi'" --timeout 0.1
 ```
